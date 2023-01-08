@@ -64,7 +64,7 @@ const NavBar = () => {
                         <img
                           src={currentUser.image}
                           alt="userphoto"
-                          className="w-10"
+                          className="w-10 rounded-full"
                         />
                       ) : (
                         <svg

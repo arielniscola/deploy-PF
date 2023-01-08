@@ -7,7 +7,7 @@ const initialState = {
   currentUser: null,
   sports:[],
   services:[],
-  favorites:[],
+  favUser:[],
   favlocal:[],
   allUsers:[],
   users:[]
@@ -26,6 +26,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detail: action.payload,
       };
+      case actions.GET_USER_DETAIL:
+        return {
+          ...state,
+          currentUser: action.payload
+        };
     case actions.GET_ALL_SERVICES:
       return {
         ...state,
@@ -59,17 +64,12 @@ const rootReducer = (state = initialState, action) => {
     case actions.ADD_FAVORITE:
       return {
         ...state,
-        favorites: action.payload,
-      };
-    case actions.GET_FAVORITES:
-      return {
-        ...state,
-        favorites: [...state.favorites ,action.payload],
+        favUser: action.payload,
       };
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser:action.payload
       };
     case actions.LOGOUT_CURRENT_USER:
       return {
@@ -85,13 +85,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload.api,
-        users:action.payload.borradoLogico
+        users:action.payload.logic
       };
 
     case actions.FAV_LOCAL:
       return {
         ...state,
-        favlocal: [...state.favlocal, action.payload],
+        favlocal: [...state.favlocal, ...action.payload],
       };
 
     default:
