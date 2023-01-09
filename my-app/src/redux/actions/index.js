@@ -3,7 +3,7 @@ import axios from 'axios'
 import {sports,services} from '../../data/complexsExample'
 import clientAxios from "../../config/clientAxios";
 // import {complexs} from '../../data/complexsExample'
-
+axios.defaults.baseURL = "https://pf-henry-backend-production.up.railway.app/"
 
 //CRUD COMPLEX
 export const getAllComplex = () => async(dispatch)=>{
@@ -28,7 +28,7 @@ export const getAllComplex = () => async(dispatch)=>{
 export const getComplexDetails = (id) => async(dispatch) =>{
   try{
     
-    const find = await axios.get(`http://localhost:3001/complejo/${id}`)
+    const find = await axios.get(`/complejo/${id}`)
     
     dispatch({
       type: actions.GET_COMPLEX_DETAIL,
@@ -42,7 +42,7 @@ export const getComplexDetails = (id) => async(dispatch) =>{
 export const createComplex = async(complex)=>{
   try{
     
-    const create = await axios.post("http://localhost:3001/complejo/create",complex)
+    const create = await axios.post("/complejo/create",complex)
     return {create, msg:"complex updated"}
   }
   catch(error){
@@ -61,7 +61,7 @@ export const updateComplex = (id,{logo,cuit,complexName,complexAddress})=>{
   }
   try{
     
-    const create = axios.put(`http://localhost:3001/complejo/update/${id}`,complex)
+    const create = axios.put(`/complejo/update/${id}`,complex)
     
     return {create, msg:"complex updated"}
   }
@@ -75,7 +75,7 @@ export const deleteComplex = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/complejo/delete/${id}`)
+    const create = axios.post(`/complejo/delete/${id}`)
     
     return {create, msg:"complex deleted"}
   }
@@ -90,7 +90,7 @@ export const deleteComplex = (id)=>{
 
 export const getAllUser = () => async(dispatch)=>{
   try {
-      const {data} = await axios.get("http://localhost:3001/clients/all")
+      const {data} = await axios.get("/clients/all")
       const logic = data.filter(e => e.delete === false)
       dispatch({
           type: actions.GET_ALL_USER,
@@ -109,7 +109,7 @@ export const getAllUser = () => async(dispatch)=>{
 export const getUserDetails = (id) => async(dispatch) =>{
 try{
   
-  const find = await axios.get(`http://localhost:3001/clients/${id}`)
+  const find = await axios.get(`/clients/${id}`)
   
   dispatch({
     type: actions.GET_USER_DETAIL,
@@ -143,7 +143,7 @@ export const updateUser = (id,{fullname,password,email,phone})=>{
   }
   try{
     
-    const create = axios.put(`http://localhost:3001/clients/update/${id}`,user)
+    const create = axios.put(`/clients/update/${id}`,user)
     
     return {create, msg:"user updated"}
   }
@@ -157,7 +157,7 @@ export const deleteUser = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/clients/delete/${id}`)
+    const create = axios.post(`/clients/delete/${id}`)
     
     return {create, msg:"user deleted"}
   }
@@ -170,7 +170,7 @@ export const deleteUser = (id)=>{
 //CRUD COURT
 export const getAllCourt = () => async(dispatch)=>{
   try {
-      const api = await axios.get("http://localhost:3001/court/all")
+      const api = await axios.get("/court/all")
       dispatch({
           type: actions.GET_ALL_COURT,
           payload: api.data
@@ -185,7 +185,7 @@ export const getAllCourt = () => async(dispatch)=>{
 export const getCourtDetails = (id) => async(dispatch) =>{
 try{
   
-  const find = await axios.get(`http://localhost:3001/court/${id}`)
+  const find = await axios.get(`/court/${id}`)
   
   dispatch({
     type: actions.GET_COURT_DETAIL,
@@ -200,7 +200,7 @@ export const createCourt = (court)=>{
 
   try{
     
-    const create = axios.get("http://localhost:3001/court/create",court)
+    const create = axios.get("/court/create",court)
     
     return {create, msg:"court created"}
   }
@@ -219,7 +219,7 @@ export const updateCourt = (id,{numberCourt,description,typeCourt})=>{
   }
   try{
     
-    const create = axios.put(`http://localhost:3001/court/update/${id}`,court)
+    const create = axios.put(`/court/update/${id}`,court)
     
     return {create, msg:"court updated"}
   }
@@ -233,7 +233,7 @@ export const deleteCourt = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/court/delete/${id}`)
+    const create = axios.post(`/court/delete/${id}`)
     
     return {create, msg:"court deleted"}
   }
@@ -246,7 +246,7 @@ export const deleteCourt = (id)=>{
 //CRUD TURN
 export const getAllTurn= () => async(dispatch)=>{
   try {
-      const api = await axios.get("http://localhost:3001/turn/all")
+      const api = await axios.get("/turn/all")
       dispatch({
           type: actions.GET_ALL_TURN,
           payload: api.data
@@ -261,7 +261,7 @@ export const getAllTurn= () => async(dispatch)=>{
 export const getTurnDetail = (id) => async(dispatch) =>{
 try{
   
-  const find = await axios.get(`http://localhost:3001/turn/${id}`)
+  const find = await axios.get(`/turn/${id}`)
   
   dispatch({
     type: actions.GET_TURN_DETAIL,
@@ -277,7 +277,7 @@ export const createTurn = (clientID,courtID,{ date, time_start})=>{
   const turn = { date, time_start}
   try{
     
-    const create = axios.get(`http://localhost:3001/turn/create/${clientID}/${courtID}`,turn)
+    const create = axios.get(`/turn/create/${clientID}/${courtID}`,turn)
     
     return {create, msg:"turn created"}
   }
@@ -292,7 +292,7 @@ export const updateTurn = (id,{ date, time_start})=>{
   const turn = { date, time_start}
   try{
     
-    const create = axios.put(`http://localhost:3001/turn/update/${id}`,turn)
+    const create = axios.put(`/turn/update/${id}`,turn)
     
     return {create, msg:"turn updated"}
   }
@@ -306,7 +306,7 @@ export const deleteTurn = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/turn/delete/${id}`)
+    const create = axios.post(`/turn/delete/${id}`)
     
     return {create, msg:"turn deleted"}
   }
@@ -320,7 +320,7 @@ export const deleteTurn = (id)=>{
 //CRUD TYPECOUR
 export const getAllTypeCourt = () => async(dispatch)=>{
   try {
-      const api = await axios.get("http://localhost:3001/typecourt/all")
+      const api = await axios.get("/typecourt/all")
       dispatch({
           type: actions.GET_ALL_TYPECOURT,
           payload: api.data
@@ -335,7 +335,7 @@ export const getAllTypeCourt = () => async(dispatch)=>{
 export const getTypeCourtDetails = (id) => async(dispatch) =>{
 try{
   
-  const find = await axios.get(`http://localhost:3001/typecourt/${id}`)
+  const find = await axios.get(`/typecourt/${id}`)
   
   dispatch({
     type: actions.GET_TYPECOURT_DETAIL,
@@ -351,7 +351,7 @@ export const createTypeCourt = ({description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.get("http://localhost:3001/typecourt/create",typecourt)
+    const create = axios.get("/typecourt/create",typecourt)
     
     return {create, msg:"typecourt created"}
   }
@@ -366,7 +366,7 @@ export const updateTypeCourt = (id,{description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.put(`http://localhost:3001/typecourt/update/${id}`,typecourt)
+    const create = axios.put(`/typecourt/update/${id}`,typecourt)
     
     return {create, msg:"typecourt updated"}
   }
@@ -380,7 +380,7 @@ export const deleteTypeCourt = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/typecourt/delete/${id}`)
+    const create = axios.post(`/typecourt/delete/${id}`)
     
     return {create, msg:"typecourt deleted"}
   }
@@ -393,7 +393,7 @@ export const deleteTypeCourt = (id)=>{
 //CRUD EVENT
 export const getAllEvent = () => async(dispatch)=>{
   try {
-      const api = await axios.get("http://localhost:3001/event/all")
+      const api = await axios.get("/event/all")
       dispatch({
           type: actions.GET_ALL_EVENT,
           payload: api.data
@@ -408,7 +408,7 @@ export const getAllEvent = () => async(dispatch)=>{
 export const getEventDetails = (id) => async(dispatch) =>{
 try{
   
-  const find = await axios.get(`http://localhost:3001/event/${id}`)
+  const find = await axios.get(`/event/${id}`)
   
   dispatch({
     type: actions.GET_EVENT_DETAIL,
@@ -424,7 +424,7 @@ export const createEvent = ({description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.get("http://localhost:3001/event/create",typecourt)
+    const create = axios.get("/event/create",typecourt)
     
     return {create, msg:"event created"}
   }
@@ -439,7 +439,7 @@ export const updateEvent = (id,{description,icon})=>{
   const typecourt = {description,icon}
   try{
     
-    const create = axios.put(`http://localhost:3001/event/update/${id}`,typecourt)
+    const create = axios.put(`/event/update/${id}`,typecourt)
     
     return {create, msg:"event updated"}
   }
@@ -453,7 +453,7 @@ export const deleteEvent = (id)=>{
 
   try{
     
-    const create = axios.post(`http://localhost:3001/event/delete/${id}`)
+    const create = axios.post(`/event/delete/${id}`)
     
     return {create, msg:"event deleted"}
   }
@@ -586,14 +586,14 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
 
   export const createFavorite= async(id)=>{
     try{
-      const send = axios.post(`http://localhost:3001/favorites/create/${id}`)
+      const send = axios.post(`/favorites/create/${id}`)
       return {send, msg:"complex array created"}
     }catch(error){console.log(error)}
   }
 
   export const updateFavorite= async(id,obj)=>{
     try{
-      const send = await axios.put(`http://localhost:3001/clients/update/${id}`,obj)
+      const send = await axios.put(`/clients/update/${id}`,obj)
       return {send, msg:"the complex was added to favorites"}
     }catch(error){console.log(error)}
   }
@@ -657,7 +657,7 @@ export const searchCity = (city, array, setNotfound) => dispatch =>{
 export const changeStatusComplex = async (id, change) =>{
   try{
     
-    const update = await axios.put(`http://localhost:3001/complejo/update/${id}`,change)
+    const update = await axios.put(`/complejo/update/${id}`,change)
     
     return {update, msg:"complex updated"}
   }
@@ -672,7 +672,7 @@ export const changeStatusComplex = async (id, change) =>{
 export const changeStatusUser = async(id,change) =>{
   try{
     
-    const update = await axios.put(`http://localhost:3001/clients/update/${id}`,change)
+    const update = await axios.put(`/clients/update/${id}`,change)
     
     return {update, msg:"user updated"}
   }
