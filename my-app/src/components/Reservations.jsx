@@ -13,7 +13,7 @@ const Reservations = (props) => {
   const id = currentUser && currentUser?.id;
   const [isOpen, modalOpen] = useModal(false);
 
-  React.useEffect(() => {
+ useEffect(() => {
     axios
       .get(
         `https://pf-henry-backend-production.up.railway.app/turn/user-turns/${id}`
