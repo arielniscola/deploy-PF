@@ -22,6 +22,7 @@ import Reservations from "./components/Reservations";
 import CreateCourt from "./components/CreateCourt";
 import ComplejoDisplayer from "./components/ComplejoDisplayer";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ReservationCourt from "./components/ReservationCourt";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_KEY}>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_KEY_GOOGLE}>
       <Routes>
         <Route path="/" element={<LayOut />}>
           <Route index element={<Home />} />
@@ -50,7 +51,8 @@ function App() {
           <Route path="search/:id" element={<ComplexDetails />} />
           <Route path="reservations" element={<Reservations />} />
           <Route path="complejodisplayer" element={<ComplejoDisplayer />} />
-          <Route path="createcourt" element={<CreateCourt />} />
+          <Route path="createcourt/:id" element={<CreateCourt />} />
+          <Route path="reservation/:id/:duration_turn" element={<ReservationCourt />} />
         </Route>
       </Routes>
     </GoogleOAuthProvider>
@@ -58,4 +60,3 @@ function App() {
 }
 
 export default App;
-

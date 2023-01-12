@@ -2,6 +2,9 @@
 //traer info//COMPLEX
 export const GET_ALL_COMPLEX = "GET_ALL_COMPLEX"
 export const GET_COMPLEX_DETAIL = "GET_COMPLEX_DETAIL"
+//traer info//REVIEW
+export const GET_ALL_REVIEW = "GET_ALL_REVIEW"
+export const GET_REVIEW_DETAIL = "GET_REVIEW_DETAIL"
 //traer info//USER
 export const GET_ALL_USER = "GET_ALL_USER"
 export const GET_USER_DETAIL = "GET_USER_DETAIL"
@@ -11,9 +14,12 @@ export const GET_COURT_DETAIL = "GET_COURT_DETAIL"
 //traer info//TURN
 export const GET_ALL_TURN = "GET_ALL_TURN"
 export const GET_TURN_DETAIL = "GET_TURN_DETAIL"
-//traer info//TURN
+//traer info//TYPECOURT
 export const GET_ALL_TYPECOURT = "GET_ALL_TYPECOURT"
 export const GET_TYPECOURT_DETAIL = "GET_TYPECOURT_DETAIL"
+//UPDATE FAVORITES
+export const UPDATE_FAVORITES = "UPDATE_FAVORITES"
+export const UPDATE_FAVORITES_DEL = "UPDATE_FAVORITES_DEL"
 //traer info//EVENT
 export const GET_ALL_EVENT = "GET_ALL_EVENT"
 export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL"

@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { setCurrentUser, logoutUser } from "../redux/actions";
+import { logoutUser } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import logo from '../data/BooKingblanco.png'
 
 const NavBar = () => {
   const [userModal, setUserModal] = useState(false);
@@ -17,31 +17,29 @@ const NavBar = () => {
 
   return (
     //<nav className="bg-white shadow dark:bg-blue-500/75 ">
-    <nav className="bg-gradient-to-r from-blue-500/75 via-purple-400 to-pink-400/75 ">
+    <nav className="bg-gradient-to-r bg-blue-800/75 ">
       <div className="px-8 mx-auto max-w-7xl">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center ">
             <Link className="flex-shrink-0" to="/">
-              <p className="text-3xl">
-                PF<span className="font-bold"> Henry</span>
-              </p>
+              <img className="h-16" src={logo} alt="BooKing" />
             </Link>
             <div className="hidden md:block">
               <div className="flex items-baseline ml-10 space-x-4">
                 <Link
-                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-white rounded-md hover:text-gray-800 dark:hover:text-gray-600"
                   to="/"
                 >
                   Home
                 </Link>
                 <Link
-                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-white rounded-md hover:text-gray-800 dark:hover:text-gray-600"
                   to="/about"
                 >
                   About us
                 </Link>
                 <Link
-                  className="px-3 py-2 text-xl font-medium text-gray-600 rounded-md hover:text-gray-800 dark:hover:text-white"
+                  className="px-3 py-2 text-xl font-medium text-white rounded-md hover:text-gray-800 dark:hover:text-gray-600"
                   to="/contact-us"
                 >
                   Contact us
@@ -62,7 +60,7 @@ const NavBar = () => {
                     >
                       {currentUser ? (
                         <img
-                          src={currentUser.image}
+                          src={currentUser.profile_img || `https://i.pravatar.cc/150?u=${currentUser.id}`}
                           alt="userphoto"
                           className="w-10 rounded-full"
                         />
@@ -100,7 +98,7 @@ const NavBar = () => {
                           <span>Favorites</span>
                         </span>
                       </Link>
-                      <Link
+                      {currentUser && <Link
                         to="/account"
                         className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                         role="menuitem"
@@ -108,7 +106,7 @@ const NavBar = () => {
                         <span className="flex flex-col">
                           <span>Account</span>
                         </span>
-                      </Link>
+                      </Link>}
                       {currentUser ? (
                         <Link
                           // href="#"
@@ -121,7 +119,7 @@ const NavBar = () => {
                         </Link>
                       ) : (
                         <Link
-                          // href="#"
+                          to="/login"
                           className="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                           role="menuitem"
                         >
@@ -165,7 +163,7 @@ const NavBar = () => {
           </Link>
           <Link
             className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-gray-800 dark:hover:text-white"
-            to="/about-us"
+            to="/about"
           >
             About us
           </Link>

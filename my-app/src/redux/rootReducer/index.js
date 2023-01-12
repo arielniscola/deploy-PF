@@ -2,13 +2,13 @@ import * as actions from "../actionTypes";
 
 const initialState = {
   allComplexs: [],
+  allReviews:[],
   complexs: [],
   detail: {},
   currentUser: null,
   sports:[],
   services:[],
   favUser:[],
-  favlocal:[],
   allUsers:[],
   users:[]
 };
@@ -18,8 +18,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.GET_ALL_COMPLEX:
       return {
         ...state,
-        allComplexs: action.payload.api,
-        complexs: action.payload.borradoLogico,
+        allComplexs: action.payload.data,
+        complexs: action.payload.logic,
       };
     case actions.GET_COMPLEX_DETAIL:
       return {
@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         services: action.payload,
       };
-    case actions.GET_ALL_SPORTS:
+    case actions.GET_ALL_TYPECOURT:
       return {
         ...state,
         sports: action.payload,
@@ -69,7 +69,7 @@ const rootReducer = (state = initialState, action) => {
     case actions.SET_CURRENT_USER:
       return {
         ...state,
-        currentUser:action.payload
+        currentUser:{...action.payload,rol:"admin"}
       };
     case actions.LOGOUT_CURRENT_USER:
       return {
@@ -87,11 +87,20 @@ const rootReducer = (state = initialState, action) => {
         allUsers: action.payload.api,
         users:action.payload.logic
       };
-
-    case actions.FAV_LOCAL:
+    case actions.GET_ALL_REVIEW:
       return {
         ...state,
-        favlocal: [...state.favlocal, ...action.payload],
+        allReviews: action.payload,
+      };
+    case actions.UPDATE_FAVORITES:
+      return {
+        ...state,
+        currentUser: {...state.currentUser, favorites:[...state.currentUser.favorites, ...action.payload]},
+      };
+    case actions.UPDATE_FAVORITES_DEL:
+      return {
+        ...state,
+        currentUser: {...state.currentUser, favorites:action.payload},
       };
 
     default:

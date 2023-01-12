@@ -4,11 +4,14 @@ import ComplexCard from "./ComplexCard";
 import { useSelector } from 'react-redux';
 import MapComplex from "./mapForComplexs"
 import { useLoadScript } from '@react-google-maps/api';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { updateFavorite } from '../redux/actions';
 
 const ComplexContainer = () => {
 
   const complexs = useSelector(state => state.complexs)
-  const {isLoaded} = useLoadScript({googleMapsApiKey:"AIzaSyDnQobr1nh7e9Y5r3In5Rmc38aZIqJsMcs"})
+  const {isLoaded} = useLoadScript({googleMapsApiKey:process.env.REACT_APP_GOOGLE_MAPS_API_KEY})
 
   return (
     <div>
