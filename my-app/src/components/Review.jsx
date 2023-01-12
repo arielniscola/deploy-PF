@@ -18,8 +18,9 @@ const Review = ({id,userId}) => {
     });
     console.log("esto es review", review);
   };
-  const handleCreateReview = () => {
-    dispatch(createReview(review));
+  const handleCreateReview = async () => {
+     console.log(review);
+    await dispatch(createReview(review));
   };
 
   return (
