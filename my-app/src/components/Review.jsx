@@ -16,7 +16,6 @@ const Review = ({id,userId}) => {
       ...review,
       [e.target.name]: e.target.value,
     });
-    console.log("esto es review", review);
   };
   const handleCreateReview = async () => {
       setTimeout(() => console.log('!'), 1000);
