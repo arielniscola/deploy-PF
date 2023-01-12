@@ -13,7 +13,7 @@ const Account = () => {
 
   return (
     <>
-      {currentUser.rol === "owner" ? (
+      {currentUser?.rol === "owner" ? (
         <>
           <UserDashBoard />
           <OwnerDashboard />
