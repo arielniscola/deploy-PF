@@ -19,6 +19,7 @@ const Review = ({id,userId}) => {
     console.log("esto es review", review);
   };
   const handleCreateReview = async () => {
+      setTimeout(() => console.log('!'), 1000);
      console.log(review);
     await dispatch(createReview(review));
   };
